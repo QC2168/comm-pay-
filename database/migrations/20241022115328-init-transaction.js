@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         comment: '用户ID'
@@ -30,16 +30,16 @@ module.exports = {
         allowNull: true,
         comment: '备注（驳回失败的时候显示的，可为空）'
       },
-      bankCardId: {
+      bank_card_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         comment: '提现银行卡ID'
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

@@ -10,32 +10,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         comment: '用户ID'
       },
-      bankBranch: {
+      bank_branch: {
         type: Sequelize.STRING,
         allowNull: false,
         comment: '银行卡所属分行'
       },
-      cardNumber: {
+      card_number: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true, // 银行卡号应该是唯一的
         comment: '银行卡号'
       },
-      holderName: {
+      holder_name: {
         type: Sequelize.STRING,
         allowNull: false,
         comment: '姓名（持卡人）'
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
