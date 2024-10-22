@@ -16,6 +16,7 @@ module.exports = app => {
     mobile: STRING(11),
     email: STRING(30),
     password: STRING(255),
+    tradePassword: STRING(255),
     lastLogied: {
       type: DATE,
       defaultValue: NOW,
