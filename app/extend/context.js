@@ -6,4 +6,10 @@ module.exports = {
       message,
     };
   },
+  resultErrorData(message, errors = null) {
+    return {
+      errors,
+      message,
+    };
+  }
 };

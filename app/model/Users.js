@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-  const { STRING, INTEGER, DATE, NOW, ENUM } = app.Sequelize;
+  const { STRING, INTEGER, DATE, NOW, ENUM ,DECIMAL} = app.Sequelize;
   const RoleEnum = ENUM('admin', 'user');
   const Users = app.model.define('Users', {
     id: {
@@ -11,6 +11,7 @@ module.exports = app => {
       allowNull: false,
     },
     avatar: STRING(255),
+    balance: DECIMAL(10, 2),
     role: RoleEnum,
     username: STRING(30),
     mobile: STRING(11),

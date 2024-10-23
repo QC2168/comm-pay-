@@ -4,14 +4,6 @@ const fs = require('fs-extra')
 const dayjs = require('dayjs')
 const randomString = require('random-string');
 class FileController extends Controller {
-  /**
-* #swagger-api
-* @function upload
-* @description #tags File
-* @description #parameters data body schema.file.request true - 请求参数
-* @description #responses 200 schema.file.response - 返回数据类型
-* @summary 通用上传文件
-*/
   async upload() {
     const { ctx } = this;
     try {
@@ -36,7 +28,7 @@ class FileController extends Controller {
         filename,
         link: `${process.env.MAIN_URL}:${process.env.SERVER_PORT}/public/uploadForFile/${dirName}/${filename}`
       })
-    } catch {
+    } catch{
       ctx.status = 500;
       ctx.body = ctx.resultErrorData('上传文件失败')
     }

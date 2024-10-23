@@ -71,6 +71,9 @@ module.exports = appInfo => {
       text: ['text/xml', 'application/xml'],
     },
   }
+  config.multipart = {
+    mode: 'file',
+  };
   config.swaggerEgg = {
     schema: {
       // 你的schema文件夹路径

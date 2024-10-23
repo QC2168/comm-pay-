@@ -1,3 +1,5 @@
+const alova = require('../utils/http');
+
 // app/service/sms.js
 const Service = require('egg').Service;
 class SMSService extends Service {
@@ -10,7 +12,13 @@ class SMSService extends Service {
       code = this.ctx.helper.randomInteger(100000, 999999);
     }
     try {
-  // 发送验证码
+      // 发送验证码
+      alova.Get(`http://gbk.api.smschinese.cn`, {
+        Uid: 'yxzslnb',
+        Key: '742175923E9F3940D6B4CB3037FAE097',
+        smsMob: mobile,
+        smsText: `您的验证码是${code}。请不要把验证码泄露给其他人。`
+      })
     } catch (error) {
       this.ctx.logger.error(error, Date.now())
       throw new Error('验证码发送失败，请稍后重试');

@@ -31,6 +31,11 @@ module.exports = app => {
       allowNull: false,
       comment: '姓名（持卡人）'
     },
+    cardPhoto: {
+      type: STRING,
+      allowNull: true,
+      comment: '照片'
+    },
     createdAt: {
       allowNull: false,
       type: DATE,

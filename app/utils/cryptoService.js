@@ -44,5 +44,5 @@ module.exports = {
     const decrypted = new JSEncrypt(); // 创建解密对象实例
     decrypted.setPrivateKey(options.privateKey.toString()); // 设置私钥
     return decrypted.decrypt(str); // 非对称解密内容
-  }
+  },
 }

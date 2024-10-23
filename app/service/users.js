@@ -33,15 +33,15 @@ class UsersService extends Service {
     return null;
 
   }
-  async checkUserByMobile({ mobile, code, inviteCode = undefined }) {
+  async checkUserByMobile({ mobile, code }) {
     const ctx = this.ctx;
     // 查找是否有这个手机号和验证码
-    const verify = await ctx.service.sms.verifyCode({ mobile, code });
-    if (!verify) {
-      return null;
-    }
+    // const verify = await ctx.service.sms.verifyCode({ mobile, code });
+    // if (!verify) {
+    //   return null;
+    // }
 
-    const [user, created] = await ctx.model.Users.findOrCreate({
+    const [user] = await ctx.model.Users.findOrCreate({
       where: {
         mobile,
       },
@@ -50,23 +50,8 @@ class UsersService extends Service {
         username: `用户_${mobile.substring(7)}`,
         lastLogin: new Date(),
         role: 'user',
-        active: true,
-        sourceCode: inviteCode
       },
     });
-    if (created) {
-      await ctx.model.UserWordQuotas.create({
-        userId: user.id,
-      });
-      // 新创建的需要送字数记录
-      await ctx.service.quotas.increase({ total: 500, userId: user.id, title: '新用户赠送字数' });
-      // 添加邀请链接记录
-      await ctx.model.AdminInvitations.increment({ usedTimes: 1 }, { where: { code: inviteCode } })
-    }
-    if (!user.active) {
-      // 没有找到
-      return 'forbidden';
-    }
     // 更新登录时间
     await ctx.model.Users.update(
       { lastLogin: new Date() },
@@ -116,7 +101,7 @@ class UsersService extends Service {
     try {
       const source = params.password;
       params.password = this.ctx.helper.encryptPassword(source);
-      const user = await this.ctx.model.Users.create({...params,lastLogin:new Date()}, { transaction: t });
+      const user = await this.ctx.model.Users.create({ ...params, lastLogin: new Date() }, { transaction: t });
       await this.ctx.model.UserWordQuotas.create({
         userId: user.id,
       }, { transaction: t });
