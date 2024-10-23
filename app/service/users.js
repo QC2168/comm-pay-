@@ -36,10 +36,10 @@ class UsersService extends Service {
   async checkUserByMobile({ mobile, code }) {
     const ctx = this.ctx;
     // 查找是否有这个手机号和验证码
-    // const verify = await ctx.service.sms.verifyCode({ mobile, code });
-    // if (!verify) {
-    //   return null;
-    // }
+    const verify = await ctx.service.sms.verifyCode({ mobile, code });
+    if (!verify) {
+      return null;
+    }
 
     const [user] = await ctx.model.Users.findOrCreate({
       where: {

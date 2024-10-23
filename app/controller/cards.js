@@ -6,7 +6,7 @@ class CardsController extends Controller {
     const id = ctx.state.user.id;
     const data = await ctx.model.Users.findOne({ where: { id } })
     const mobile = data.mobile;
-    const verify = this.service.sms.verifyCode({ mobile, code: ctx.request.body.code })
+    const verify = await this.service.sms.verifyCode({ mobile, code: ctx.request.body.code })
     if (!verify) {
       ctx.body = this.ctx.resultErrorData('验证码有误，请重试');
       ctx.status = 404;
